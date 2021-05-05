@@ -1,3 +1,4 @@
+import { profile } from "console";
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Photo, Profile } from "../models/profile";
@@ -75,7 +76,7 @@ export default class ProfileStore {
     }
 
     deletePhoto = async (photo: Photo) => {
-        this.loading = false;
+        this.loading = true;
         try {
             await agent.Profiles.deletePhoto(photo.id);
             runInAction(() => {
@@ -86,6 +87,23 @@ export default class ProfileStore {
             })
         } catch (error) {
             runInAction(() => this.loading = false)
+        }
+    }
+
+    updateProfile = async (profile: Partial<Profile>) => {
+        this.loading = true;
+        try {
+            await agent.Profiles.updateProfile(profile);
+            runInAction(() => {
+                if (profile.displayName && profile.displayName !== store.userStore.user?.displayName) {
+                    store.userStore.setDisplayName(profile.displayName);
+                }
+                this.profile = {...this.profile, ...profile as Profile};
+                this.loading = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => this.loading = false);
         }
     }
 }
