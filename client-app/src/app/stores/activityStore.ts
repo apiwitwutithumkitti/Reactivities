@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import { tr } from "date-fns/locale";
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Activity, ActivityFormValues } from "../models/activity";
@@ -175,6 +174,17 @@ export default class ActivityStore {
             runInAction(() => this.loading = false);
         }
     }
+
+    updateAttendeeFollowing = (username: string) => {
+        this.activityRegistry.forEach(activity => {
+            activity.attendees.forEach(attendee => {
+                if (attendee.username === username) {
+                    attendee.following ? attendee.followersCount-- : attendee.followersCount++;
+                    attendee.following = !attendee.following;
+                }
+            })
+        })
+    }    
 
     clearSelectedActivity = () => {
         this.selectedActivity = undefined;
