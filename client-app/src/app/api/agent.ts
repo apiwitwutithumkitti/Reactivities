@@ -15,7 +15,7 @@ const sleep = (delay: number) => {
     })
 }
 
-axious.defaults.baseURL = 'http://localhost:5000/api';
+axious.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axious.interceptors.request.use(config => {
     const token = store.commonStore.token;
@@ -24,7 +24,7 @@ axious.interceptors.request.use(config => {
 })
 
 axious.interceptors.response.use(async response => {
-    await sleep(1000);
+    if (process.env.NODE_ENV === 'development') await sleep(1000);
     const pagination = response.headers['pagination'];
     if (pagination) {
         response.data = new PaginatedResult(response.data, JSON.parse(pagination));
