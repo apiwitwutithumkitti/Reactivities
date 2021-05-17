@@ -70,7 +70,8 @@ namespace API
                 .ImageSources(s => s.Self().CustomSources(
                     "https://res.cloudinary.com",
                     "https://www.facebook.com",
-                    "https://scontent.fbkk8-4.fna.fbcdn.net"))
+                    "https://scontent.fbkk8-4.fna.fbcdn.net",
+                    "https://scontent-iad3-1.xx.fbcdn.net"))
                 .ScriptSources(s => s.Self().CustomSources(
                     "sha256-KuTlGLJE53Xi5u/1lC/Fxm4AVkvcXRUMbSVlS70VUzM=",
                     "https://connect.facebook.net",
