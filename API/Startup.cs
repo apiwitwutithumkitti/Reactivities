@@ -63,7 +63,8 @@ namespace API
                 .BlockAllMixedContent()
                 .StyleSources(s => s.Self().CustomSources(
                     "https://fonts.googleapis.com",
-                    "sha256-oFySg82XYSNiSd+Q3yfYPD/rxY6RMDMJ0KxzGG74iGM="))
+                    "sha256-oFySg82XYSNiSd+Q3yfYPD/rxY6RMDMJ0KxzGG74iGM=",
+                    "sha256-iv4u281ryDFvLnNHPRS71LdIH1GQfkYMSMdyLM24i2M="))
                 .FontSources(s => s.Self().CustomSources("https://fonts.gstatic.com", "data:"))
                 .FormActions(s => s.Self())
                 .FrameAncestors(s => s.Self())
@@ -71,7 +72,9 @@ namespace API
                     "https://res.cloudinary.com",
                     "https://www.facebook.com",
                     "https://scontent.fbkk8-4.fna.fbcdn.net",
-                    "https://scontent-iad3-1.xx.fbcdn.net"))
+                    "https://scontent-iad3-1.xx.fbcdn.net",
+                    "data:"
+                    ))
                 .ScriptSources(s => s.Self().CustomSources(
                     "sha256-KuTlGLJE53Xi5u/1lC/Fxm4AVkvcXRUMbSVlS70VUzM=",
                     "https://connect.facebook.net",
